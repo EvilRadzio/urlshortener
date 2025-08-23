@@ -5,11 +5,14 @@
   "devDependencies": {
     "esbuild": "^0.25.9"
   },
-  "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
-  },
+ "scripts": {
+  "build:css": "sass ./app/javascript/stylesheets/application.scss ./app/assets/builds/application.css --no-source-map --style=expanded",
+  "build": "yarn build:css && esbuild app/javascript/application.js --bundle --sourcemap --outdir=app/assets/builds",
+  "build:css:watch": "sass --watch ./app/javascript/stylesheets/application.scss:./app/assets/builds/application.css"
+},
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.16"
+    "@hotwired/turbo-rails": "^8.0.16",
+    "sass": "^1.90.0"
   }
 }

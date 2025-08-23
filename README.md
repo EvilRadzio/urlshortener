@@ -1,7 +1,10 @@
 # README
+Shitshow thats what it is
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Node:20
+Yarn:4.9.3
+Ruby: 3.3.4
+Rails: 8.0.2.1
 
 Things you may want to cover:
 
