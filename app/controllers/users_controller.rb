@@ -2,29 +2,29 @@ class UsersController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
 
-  # Najpierw before_action – metoda musi istnieć lub być publiczna
+  # sprawdzanie czy zalogowany z wyjatkiem tworzenia
   before_action :authenticate_with_api_key, except: :create
   skip_before_action :authenticate_with_api_key, only: :create
 
-  # Tworzenie użytkownika (niezabezpieczone)
+  # unprotected create
   def create
     user = User.create!(email: params[:email])
     render json: { id: user.id, email: user.email, api_key: user.api_key }
   end
 
-  # Aktualizacja email
+
   def update
     current_user.update!(email: params[:email])
     render json: { id: current_user.id, email: current_user.email }
   end
 
-  # Rotacja api_key
+  # rotate api
   def rotate_api_key
     current_user.rotate_api_key!
     render json: { api_key: current_user.api_key }
   end
 
-  # Usuwanie użytkownika
+  # user delete
   def destroy
     current_user.destroy!
     head :no_content
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   private
 
-  # Metoda autoryzacji po api_key
+  # Api auth
   def authenticate_with_api_key
     authenticate_or_request_with_http_token do |token, _options|
       @current_user = User.find_by(api_key: token)
