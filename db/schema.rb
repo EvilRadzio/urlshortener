@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_22_171253) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_23_171856) do
   create_table "shortened_urls", force: :cascade do |t|
     t.string "original_url"
     t.string "short_url"
@@ -22,9 +22,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_22_171253) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.integer "api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "api_key"
   end
 
   add_foreign_key "shortened_urls", "users"

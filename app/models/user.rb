@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :api_key, presence: true, uniqueness: true
+
   before_validation :ensure_api_key, on: :create
 
   # generowanie losowego uuid i zapisywanie

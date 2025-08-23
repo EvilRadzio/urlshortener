@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
+  protect_from_forgery with: :null_session
+
 
   # sprawdzanie czy zalogowany z wyjatkiem tworzenia
   before_action :authenticate_with_api_key, except: :create
