@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
+
   # Najpierw before_action – metoda musi istnieć lub być publiczna
   before_action :authenticate_with_api_key, except: :create
   skip_before_action :authenticate_with_api_key, only: :create
