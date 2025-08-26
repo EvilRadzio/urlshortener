@@ -9,7 +9,11 @@ class ShortenedUrlsController < ApplicationController
 
   def create
     url = current_user.shortened_urls.create!(original_url: params[:url])
-    render json: { short_code: url.short_url, full: short_url(url.short_url) }
+    render json: { 
+      short_code: url.short_url, 
+      full: redirect_url(url.short_url) 
+    }
+
   end
 
   def destroy
